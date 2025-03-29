@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes Web App</title>
+    <title>Rubrika</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     </style>
 </head>
@@ -11,44 +11,27 @@
     <!-- Sidebar -->
     <nav class="sidebar">
         <button class="sidebar-item">All</button>
-        <button class="sidebar-item">Blender journey</button>
-        <button class="sidebar-item">Meditation</button>
-        <button class="sidebar-item">Emotions</button>
-        <button class="sidebar-item">Rubrica 2</button>
+        <hr>
+        <div th:each="topic :  ${topics}">
+            <button class="sidebar-item" th:text="${topic.title}"></button>
+        </div>
     </nav>
 
     <main class="main">
         <!-- Note Example 1 -->
-        <div class="note">
+        <div class="note" th:each="note : ${notes}">
             <div class="note-header">
-                <span class="topic">Blender journey</span>
-                <span class="date">2024-11-29</span>
-                <span class="word-count">Word count</span>
-                <span class="title">Optional title</span>
+                <span class="topic">Blender journey</span> <!--TODO: Should use dto, maybe?-->
+                <span class="date" th:text="${note.date}"></span>
+                <span class="word-count">200 words</span>  <!--TODO: Update service. And use dto for sure-->
+                <span class="title" th:text="${note.title}"></span>
                 <button class="delete-btn">Delete</button>
             </div>
             <div class="note-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodo consequat.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p th:text="${note.text}"></pre>
             </div>
         </div>
 
-        <!-- Note Example 2 -->
-        <div class="note">
-            <div class="note-header">
-                <span class="topic">Rubrica 2</span>
-                <span class="date">2024-11-29</span>
-                <span class="word-count">Word count</span>
-                <span class="title">Optional title</span>
-                <button class="delete-btn">Delete</button>
-            </div>
-            <div class="note-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodo consequat.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>
     </main>
 </body>
 </html>
