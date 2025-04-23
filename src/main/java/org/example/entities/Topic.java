@@ -18,13 +18,18 @@ public class Topic {
     @JoinColumn(name = "topic_id")
     private Set<Note> notes = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Topic() {
     }
 
-    public Topic(Long id, String title, Set<Note> notes) {
+    public Topic(Long id, String title, Set<Note> notes, User user) {
         this.id = id;
         this.title = title;
         this.notes = notes;
+        this.user = user;
     }
 
     public Long getId() {
@@ -49,6 +54,14 @@ public class Topic {
 
     public void setNotes(Set<Note> notes) {
         this.notes = notes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

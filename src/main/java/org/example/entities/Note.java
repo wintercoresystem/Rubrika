@@ -19,14 +19,19 @@ public class Note {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "topic_id")
+    private Topic topic;
+
     public Note() {
     }
 
-    public Note(Long id, String title, String text, Date date) {
+    public Note(Long id, String title, String text, Date date, Topic topic) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.date = date;
+        this.topic = topic;
     }
 
     public Long getId() {
@@ -69,6 +74,14 @@ public class Note {
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }
 
