@@ -18,9 +18,9 @@
             </a>
         </div>
         <hr>
-        <div th:each="topic : ${topics}" class="btn-group dropdown-menu-end" th:data-topic-id="${topic.id}">
-            <a th:href="${topic.id}">
-            <button class="btn btn-light" th:text="${topic.title}">
+        <div th:each="topic : ${topics}" class="btn-group dropdown-menu-end">
+            <a th:href="${topic.topicId}">
+            <button class="btn btn-light" th:text="${topic.topicTitle}">
             </button>
             </a>
             <!-- Bootstrap Dropdown -->
@@ -55,10 +55,10 @@
 
         <!-- Other notes -->
         <div class="note" th:each="note : ${notes}"
-             th:attr="note-id=${note.id}"> <!-- TODO: Make secure later -->
+             th:attr="note-id=${note.noteId}"> <!-- TODO: Make secure later -->
             <div class="note-content">
                 <div class="note-header">
-                    <span class="topic">Topic title</span> <!--TODO: Should use dto, maybe?-->
+                    <span class="topic" th:text="${note.topicTitle}">Topic title</span>
                     <span class="date" th:text="${note.date}"></span>
                     <span class="word-count">200 words</span>  <!--TODO: Update service. And use dto for sure-->
                     <span class="title" th:text="${note.title}"></span>

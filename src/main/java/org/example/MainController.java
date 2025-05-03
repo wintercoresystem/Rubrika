@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.dtos.NoteMapper;
+import org.example.dtos.TopicDTO;
+import org.example.dtos.TopicMapper;
 import org.example.entities.Note;
 import org.example.entities.Topic;
 import org.example.entities.User;
@@ -28,6 +31,9 @@ public class MainController {
     @Autowired
     private NoteService noteService;
 
+    private TopicMapper topicMapper =  new TopicMapper();
+    private NoteMapper noteMapper =  new NoteMapper();
+
     @GetMapping("/")
     public String mainPage(Model model) {
         User user = userService.getUserById(1L);
@@ -35,8 +41,8 @@ public class MainController {
         List<Note> notes = noteService.getNotesByUserId(1L);
 
         model.addAttribute("user", user);
-        model.addAttribute("topics", topics);
-        model.addAttribute("notes", notes);
+        model.addAttribute("topics", topicMapper.toDtos(topics));
+        model.addAttribute("notes", noteMapper.toDtos(notes));
 
         return "index";
     }
@@ -46,14 +52,14 @@ public class MainController {
     public String mainPage(Model model, @PathVariable("topicId") Long topicId) {
         User user = userService.getUserById(1L);
         List<Topic> topics = topicService.getUserTopics(1L);
-        Topic currentTopic = topicService.getTopicById(1L, topicId);
+        TopicDTO currentTopic = topicMapper.toDto(topicService.getTopicById(1L, topicId));
         List<Note> notes = noteService.getNotesByTopicId(topicId);
 
 
         model.addAttribute("currentTopic", currentTopic);
         model.addAttribute("user", user);
-        model.addAttribute("topics", topics);
-        model.addAttribute("notes", notes);
+        model.addAttribute("topics", topicMapper.toDtos(topics));
+        model.addAttribute("notes", noteMapper.toDtos(notes));
 
         return "index";
     }
