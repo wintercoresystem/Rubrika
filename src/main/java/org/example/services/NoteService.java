@@ -20,4 +20,13 @@ public class NoteService {
     public List<Note> getNotesByUserId(Long userId) {
         return noteRepository.getNotesByUserId(userId);
     }
+
+    public void saveNote(Note note) {
+        // TODO: add validation on topicId later
+        noteRepository.save(note);
+    }
+
+    public void removeNoteById(Long id) {
+        noteRepository.deleteById(id);
+    }
 }

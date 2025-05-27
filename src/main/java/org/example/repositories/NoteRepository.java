@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
-    @Query("SELECT n FROM Note n WHERE n.topic.id = :topicId")
+    @Query("SELECT n FROM Note n WHERE n.topic.id = :topicId ORDER BY n.date DESC")
     public List<Note> getNotesByTopicId(@Param("topicId") Long topicId);
 
-    @Query("SELECT n FROM Note n JOIN topic t WHERE  t.user.id = :userId")
+    @Query("SELECT n FROM Note n JOIN topic t WHERE  t.user.id = :userId ORDER BY n.date DESC")
     public List<Note> getNotesByUserId(@Param("userId") Long userId);
 }

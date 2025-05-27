@@ -17,7 +17,7 @@ public class TopicService {
         return topicRepository.getUserTopicsOrderByName(userId);
     }
 
-    public Topic getTopicById(Long userId, Long topicId) {
+    public Topic getTopicById(Long userId, Long topicId) { // TODO: userId here is for validation?
         return topicRepository
                 .findById(topicId).orElseThrow(() -> new IllegalArgumentException("Topic not found"));
 

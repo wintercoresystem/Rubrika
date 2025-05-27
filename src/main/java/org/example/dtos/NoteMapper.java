@@ -27,6 +27,7 @@ public class NoteMapper {
                 .date(note.getDate())
                 .topicId(note.getTopic().getId())
                 .topicTitle(note.getTopic().getTitle())
+                .wordCount(note.getText().chars().filter(spaces -> spaces == ' ').count())
                 .build();
     }
 
